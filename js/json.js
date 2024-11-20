@@ -1,61 +1,75 @@
-// Reference header and section elements
-const header = document.querySelector('header');
-const section = document.querySelector('section');
+// JSON data
+const jsonData = [
+    {
+        "name": "Monstrous Mint",
+        "calories": 400,
+        "type": "Ice Cream",
+        "ingredients": ["peppermint cream", "dark chocolate chips", "vanilla extract"],
+        "image": "images/chocolate-mint.svg"
+    },
+    {
+        "name": "strawberry",
+        "calories": 300,
+        "type": "Regular",
+        "ingredients": ["milk", "sugar", "strawberry extract", "strawberry chunks"],
+        "image": "images/strawberrysmoothie.svg"
+    },
+    {
+        "name": "pineapple",
+        "calories": 400,
+        "type": "Regular",
+        "ingredients": ["milk", "sugar", "pineapple extract", "pineapple chunks"],
+        "image": "images/pineapplesmoothie.svg"
+    },
+    {
+        "name": "Perfect Peach Mango",
+        "calories": 350,
+        "type": "Sorbet",
+        "ingredients": ["peach purée", "mango chunks", "clover honey"],
+        "image": "images/peach-mango.svg"
+    }
+];
 
-// Fetch and populate data
-async function populate() {
-    // Local JSON file URL
-    const requestURL = 'js/json.js'; 
-    const response = await fetch(requestURL);
-    const jsonObj = await response.json();
+// Select the container
+const container = document.querySelector("#data-container");
 
-    populateHeader(jsonObj);
-    showTopFlavors(jsonObj);
-}
+// Iterate over the JSON data
+jsonData.forEach(item => {
+    const article = document.createElement("article");
 
-// Populate Header
-function populateHeader(jsonObj) {
-    const h1 = document.createElement('h1');
-    h1.textContent = jsonObj.companyName;
+    // Image element
+    const img = document.createElement("img");
+    img.src = item.image;
+    img.alt = item.name;
 
-    const para = document.createElement('p');
-    para.textContent = `Head Office: ${jsonObj.headOffice} | Established: ${jsonObj.established}`;
+    // Name element
+    const name = document.createElement("h2");
+    name.textContent = item.name;
 
-    header.appendChild(h1);
-    header.appendChild(para);
-}
+    // Type element
+    const type = document.createElement("p");
+    type.textContent = `Type: ${item.type}`;
 
-// Display Top Flavors
-function showTopFlavors(jsonObj) {
-    const topFlavors = jsonObj.topFlavors;
+    // Calories element
+    const calories = document.createElement("p");
+    calories.textContent = `Calories: ${item.calories}`;
 
-    topFlavors.forEach(flavor => {
-        const article = document.createElement('article');
-        const h2 = document.createElement('h2');
-        const img = document.createElement('img');
-        const calories = document.createElement('p');
-        const type = document.createElement('p');
-        const ul = document.createElement('ul');
-
-        h2.textContent = flavor.name;
-        img.setAttribute('src', `images/${flavor.image}`);
-        img.setAttribute('alt', flavor.name);
-        calories.textContent = `Calories: ${flavor.calories}`;
-        type.textContent = `Type: ${flavor.type}`;
-        flavor.ingredients.forEach(ingredient => {
-            const li = document.createElement('li');
-            li.textContent = ingredient;
-            ul.appendChild(li);
-        });
-
-        article.appendChild(h2);
-        article.appendChild(img);
-        article.appendChild(calories);
-        article.appendChild(type);
-        article.appendChild(ul);
-        section.appendChild(article);
+    // Ingredients list
+    const ingredients = document.createElement("ul");
+    ingredients.textContent = "Ingredients:";
+    item.ingredients.forEach(ingredient => {
+        const li = document.createElement("li");
+        li.textContent = ingredient;
+        ingredients.appendChild(li);
     });
-}
 
-// Initialize population
-populate();
+    // Append elements to the article
+    article.appendChild(img);
+    article.appendChild(name);
+    article.appendChild(type);
+    article.appendChild(calories);
+    article.appendChild(ingredients);
+
+    // Append the article to the container
+    container.appendChild(article);
+});

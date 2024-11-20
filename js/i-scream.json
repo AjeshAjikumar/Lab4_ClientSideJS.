@@ -16,6 +16,20 @@
       "image": "chocolate-mint.svg"
     },
     {
+      "name": "strawberry",
+      "calories": 300,
+      "type": "smoothie",
+      "ingredients": ["milk", "sugar", "strawberry extract", "strawberry chunks"],
+      "image": "strawberrysmoothie.svg"
+    },
+    {
+      "name": "pineapple",
+      "calories": 400,
+      "type": "smoothie",
+      "ingredients": ["milk", "sugar", "pineapple extract" ,"pineapple chunks"],
+      "image": "pineapplesmoothie.svg"
+    },
+    {
       "name": "Perfect Peach Mango",
       "calories": 350,
       "type": "sorbet",
@@ -25,28 +39,6 @@
         "clover honey"
       ],
       "image": "peach-mango.svg"
-    },
-    {
-      "name": "Berry Blast",
-      "calories": 300,
-      "type": "gelato",
-      "ingredients": [
-        "blueberries",
-        "strawberries",
-        "sugar"
-      ],
-      "image": "berry-blast.svg"
-    },
-    {
-      "name": "Caramel Crunch",
-      "calories": 450,
-      "type": "ice cream",
-      "ingredients": [
-        "caramel swirls",
-        "crushed peanuts",
-        "vanilla cream"
-      ],
-      "image": "caramel-crunch.svg"
     }
   ]
 }
